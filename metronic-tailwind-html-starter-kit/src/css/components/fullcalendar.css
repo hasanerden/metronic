@@ -1,0 +1,292 @@
+@layer components {
+  /* FullCalendar container */
+  .fc {
+    font-family: inherit !important;
+  }
+
+  /* Calendar header */
+  .fc-header-toolbar {
+    @apply mb-4;
+  }
+
+  .fc-toolbar-title {
+    @apply text-base! font-semibold text-foreground;
+  }
+
+  /* Toolbar button groups - No spacing between buttons (like kt-toggle-group) */
+  .fc-toolbar-chunk {
+    @apply flex items-center;
+    gap: 0 !important;
+  }
+
+  /* Remove spacing between individual buttons */
+  .fc-button + .fc-button {
+    margin-left: 0 !important;
+  }
+
+  /* Remove double borders between adjacent buttons */
+  .fc-button:not(:last-child) {
+    border-right: none !important;
+  }
+
+  /* Calendar buttons - Match Metronic kt-btn styling */
+  .fc-button {
+    @apply inline-flex! items-center! justify-center;
+    @apply cursor-pointer font-medium whitespace-nowrap;
+    @apply transition-colors;
+    @apply h-8 px-3 text-xs font-medium text-foreground bg-background border border-border;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    gap: 0.375rem !important;
+  }
+
+  /* Icon color - inherit from button text color */
+  .fc-button .fc-icon,
+  .fc-button .fc-icon::before,
+  .fc-button .fc-icon::after {
+    font-size: 1rem !important;
+    color: currentColor !important;
+    fill: currentColor !important;
+    position: relative !important;
+  }
+
+  /* Add radius to first button (left side) */
+  .fc-button-group .fc-button:first-child,
+  .fc-toolbar-chunk .fc-button:first-child {
+    border-top-left-radius: var(--radius-md) !important;
+    border-bottom-left-radius: var(--radius-md) !important;
+  }
+
+  /* Add radius to last button (right side) */
+  .fc-button-group .fc-button:last-child,
+  .fc-toolbar-chunk .fc-button:last-child {
+    border-top-right-radius: var(--radius-md) !important;
+    border-bottom-right-radius: var(--radius-md) !important;
+  }
+
+  /* Today button - add radius to all 4 corners */
+  .fc-today-button {
+    border-radius: var(--radius-md) !important;
+  }
+
+  /* Consistent width for today, week, day, list buttons */
+  .fc-today-button,
+  .fc-dayGridWeek-button,
+  .fc-dayGridDay-button,
+  .fc-listWeek-button,
+  .fc-listDay-button,
+  .fc-listMonth-button,
+  .fc-listYear-button {
+    min-width: 4rem !important;
+    width: auto !important;
+  }
+
+  .fc-button:hover:not(:disabled) {
+    @media (hover: hover) {
+      background-color: var(--accent) !important;
+      color: var(--accent-foreground) !important;
+    }
+  }
+
+  /* Icon color on hover - match button text color */
+  .fc-button:hover:not(:disabled) .fc-icon,
+  .fc-button:hover:not(:disabled) .fc-icon::before,
+  .fc-button:hover:not(:disabled) .fc-icon::after {
+    color: var(--accent-foreground) !important;
+    fill: var(--accent-foreground) !important;
+  }
+
+  /* Primary button icons - always use primary-foreground (white) */
+  .fc-button-primary .fc-icon,
+  .fc-button-primary .fc-icon::before,
+  .fc-button-primary .fc-icon::after {
+    color: var(--primary-foreground) !important;
+    fill: var(--primary-foreground) !important;
+  }
+
+  .fc-button-primary:hover:not(:disabled) .fc-icon,
+  .fc-button-primary:hover:not(:disabled) .fc-icon::before,
+  .fc-button-primary:hover:not(:disabled) .fc-icon::after {
+    color: var(--primary-foreground) !important;
+    fill: var(--primary-foreground) !important;
+  }
+
+  .fc-button:focus-visible {
+    outline: none !important;
+    @apply ring-2 ring-ring ring-offset-2;
+  }
+
+  .fc-button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  /* Primary button (prev/next/today buttons) - Make them regular buttons to sync with view buttons */
+  .fc-button-primary {
+    background-color: var(--background) !important;
+    color: var(--foreground) !important;
+    border-color: var(--border) !important;
+  }
+
+  .fc-button-primary:hover:not(:disabled) {
+    @media (hover: hover) {
+      background-color: var(--accent) !important;
+      color: var(--accent-foreground) !important;
+    }
+  }
+
+  /* Primary button icons - use regular foreground color */
+  .fc-button-primary .fc-icon,
+  .fc-button-primary .fc-icon::before,
+  .fc-button-primary .fc-icon::after {
+    color: currentColor !important;
+    fill: currentColor !important;
+  }
+
+  .fc-button-primary:hover:not(:disabled) .fc-icon,
+  .fc-button-primary:hover:not(:disabled) .fc-icon::before,
+  .fc-button-primary:hover:not(:disabled) .fc-icon::after {
+    color: var(--accent-foreground) !important;
+    fill: var(--accent-foreground) !important;
+  }
+
+  /* Active button (selected view) - Match kt-btn active styling */
+  .fc-button-active {
+    background-color: var(--primary) !important;
+    color: var(--primary-foreground) !important;
+    border-color: var(--primary) !important;
+  }
+
+  .fc-button-active:hover:not(:disabled) {
+    @media (hover: hover) {
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--primary) 90%, transparent) !important;
+      }
+      @supports not (color: color-mix(in lab, red, red)) {
+        opacity: 0.9;
+      }
+      color: var(--primary-foreground) !important;
+    }
+  }
+
+  /* Active button icons - use primary-foreground */
+  .fc-button-active .fc-icon,
+  .fc-button-active .fc-icon::before,
+  .fc-button-active .fc-icon::after {
+    color: var(--primary-foreground) !important;
+    fill: var(--primary-foreground) !important;
+  }
+
+  .fc-button-active:hover:not(:disabled) .fc-icon,
+  .fc-button-active:hover:not(:disabled) .fc-icon::before,
+  .fc-button-active:hover:not(:disabled) .fc-icon::after {
+    color: var(--primary-foreground) !important;
+    fill: var(--primary-foreground) !important;
+  }
+
+  /* Calendar table */
+  .fc-theme-standard td,
+  .fc-theme-standard th {
+    border-color: var(--border) !important;
+  }
+
+  .fc-col-header-cell {
+    @apply bg-muted/50;
+    padding: 0.5rem !important;
+  }
+
+  .fc-col-header-cell-cushion {
+    @apply text-sm font-medium text-muted-foreground;
+  }
+
+  /* Calendar day cells */
+  .fc-daygrid-day {
+    @apply bg-background;
+  }
+
+  .fc-daygrid-day-top {
+    @apply text-sm font-medium text-foreground;
+    padding: 0.5rem !important;
+  }
+
+  .fc-day-today {
+    @apply bg-accent/50;
+  }
+
+  /* Events */
+  .fc-event {
+    @apply border-0 rounded-md;
+    padding: 0.25rem 0.5rem !important;
+    margin: 0.125rem !important;
+    background-color: var(--primary) !important;
+    color: var(--primary-foreground) !important;
+    cursor: pointer;
+  }
+
+  .fc-event:hover {
+    opacity: 0.9;
+  }
+
+  .fc-event-title {
+    @apply text-xs font-medium;
+    padding: 0 !important;
+  }
+
+  .fc-event-time {
+    @apply text-xs;
+    padding: 0 !important;
+  }
+
+  /* Event popover */
+  .fc-popover {
+    border: 1px solid var(--border) !important;
+    box-shadow: var(--box-shadow-sm) !important;
+    background-color: var(--background) !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .fc-popover-header {
+    @apply bg-muted/50;
+    padding: 0.5rem !important;
+    border-bottom: 1px solid var(--border) !important;
+  }
+
+  .fc-popover-body {
+    padding: 0.5rem !important;
+  }
+
+  /* More link */
+  .fc-more-link {
+    @apply text-xs text-primary hover:text-primary/80;
+  }
+
+  /* Day grid */
+  .fc-daygrid-event {
+    @apply rounded-md;
+  }
+
+  /* Time grid */
+  .fc-timegrid-slot {
+    border-color: var(--border) !important;
+  }
+
+  .fc-timegrid-slot-label {
+    @apply text-xs text-muted-foreground;
+  }
+
+  .fc-timegrid-col {
+    border-color: var(--border) !important;
+  }
+
+  /* List view */
+  .fc-list-event {
+    @apply hover:bg-accent/50;
+  }
+
+  .fc-list-event-title {
+    @apply text-sm font-medium text-foreground;
+  }
+
+  .fc-list-event-time {
+    @apply text-xs text-muted-foreground;
+  }
+}
